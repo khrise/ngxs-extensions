@@ -1,0 +1,32 @@
+{
+  "$schema": "../node_modules/ng-packagr/package.schema.json",
+  "name": "@ngxs-extensions/decorators",
+  "version": "1.0.0",
+  "license": "MIT",
+  "sideEffects": true,
+  "peerDependencies": {
+    "@angular/core": ">=6.0.0 <9.0.0",
+    "@ngxs/store": ">=3.4.3",
+    "rxjs": ">=6.5.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stefan-schubert/ngxs-extensions.git"
+  },
+  "bugs": {
+    "url": "https://github.com/stefan-schubert/ngxs-extensions/issues"
+  },
+  "homepage": "https://github.com/stefan-schubert/ngxs-extensions#readme",
+  "main": "bundles/ngxs-extensions-decorators.umd.js",
+  "module": "fesm2015/ngxs-extensions-decorators.js",
+  "es2015": "fesm2015/ngxs-extensions-decorators.js",
+  "esm2015": "esm2015/ngxs-extensions-decorators.js",
+  "fesm2015": "fesm2015/ngxs-extensions-decorators.js",
+  "typings": "ngxs-extensions-decorators.d.ts",
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
+  "scripts": {
+    "prepublishOnly": "node --eval \"console.error('ERROR: Trying to publish a package that has been compiled by Ivy. This is not allowed.\\nPlease delete and rebuild the package, without compiling with Ivy, before attempting to publish.\\n')\" && exit 1"
+  }
+}
