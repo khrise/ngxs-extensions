@@ -39,8 +39,8 @@
     InjectorAccessorService.injector = null;
     /** @nocollapse */ InjectorAccessorService.ɵfac = function InjectorAccessorService_Factory(t) { return new (t || InjectorAccessorService)(i0__namespace.ɵɵinject(i0__namespace.Injector)); };
     /** @nocollapse */ InjectorAccessorService.ɵprov = i0__namespace.ɵɵdefineInjectable({ token: InjectorAccessorService, factory: InjectorAccessorService.ɵfac });
-    /*@__PURE__*/ (function () {
-        i0__namespace.ɵsetClassMetadata(InjectorAccessorService, [{
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(InjectorAccessorService, [{
                 type: i0.Injectable
             }], function () { return [{ type: i0__namespace.Injector }]; }, null);
     })();
@@ -57,10 +57,11 @@
         };
         return NgxsExtensionsDecoratorsModule;
     }());
+    /** @nocollapse */ NgxsExtensionsDecoratorsModule.ɵfac = function NgxsExtensionsDecoratorsModule_Factory(t) { return new (t || NgxsExtensionsDecoratorsModule)(i0__namespace.ɵɵinject(InjectorAccessorService, 2)); };
     /** @nocollapse */ NgxsExtensionsDecoratorsModule.ɵmod = i0__namespace.ɵɵdefineNgModule({ type: NgxsExtensionsDecoratorsModule });
-    /** @nocollapse */ NgxsExtensionsDecoratorsModule.ɵinj = i0__namespace.ɵɵdefineInjector({ factory: function NgxsExtensionsDecoratorsModule_Factory(t) { return new (t || NgxsExtensionsDecoratorsModule)(i0__namespace.ɵɵinject(InjectorAccessorService, 2)); } });
-    /*@__PURE__*/ (function () {
-        i0__namespace.ɵsetClassMetadata(NgxsExtensionsDecoratorsModule, [{
+    /** @nocollapse */ NgxsExtensionsDecoratorsModule.ɵinj = i0__namespace.ɵɵdefineInjector({});
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(NgxsExtensionsDecoratorsModule, [{
                 type: i0.NgModule
             }], function () {
             return [{ type: InjectorAccessorService, decorators: [{
