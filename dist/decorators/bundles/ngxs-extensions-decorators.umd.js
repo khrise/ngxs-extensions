@@ -38,7 +38,7 @@
     }());
     InjectorAccessorService.injector = null;
     /** @nocollapse */ InjectorAccessorService.ɵfac = function InjectorAccessorService_Factory(t) { return new (t || InjectorAccessorService)(i0__namespace.ɵɵinject(i0__namespace.Injector)); };
-    /** @nocollapse */ InjectorAccessorService.ɵprov = i0__namespace.ɵɵdefineInjectable({ token: InjectorAccessorService, factory: InjectorAccessorService.ɵfac });
+    /** @nocollapse */ InjectorAccessorService.ɵprov = /** @pureOrBreakMyCode */ i0__namespace.ɵɵdefineInjectable({ token: InjectorAccessorService, factory: InjectorAccessorService.ɵfac });
     (function () {
         (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(InjectorAccessorService, [{
                 type: i0.Injectable
@@ -58,8 +58,8 @@
         return NgxsExtensionsDecoratorsModule;
     }());
     /** @nocollapse */ NgxsExtensionsDecoratorsModule.ɵfac = function NgxsExtensionsDecoratorsModule_Factory(t) { return new (t || NgxsExtensionsDecoratorsModule)(i0__namespace.ɵɵinject(InjectorAccessorService, 2)); };
-    /** @nocollapse */ NgxsExtensionsDecoratorsModule.ɵmod = i0__namespace.ɵɵdefineNgModule({ type: NgxsExtensionsDecoratorsModule });
-    /** @nocollapse */ NgxsExtensionsDecoratorsModule.ɵinj = i0__namespace.ɵɵdefineInjector({});
+    /** @nocollapse */ NgxsExtensionsDecoratorsModule.ɵmod = /** @pureOrBreakMyCode */ i0__namespace.ɵɵdefineNgModule({ type: NgxsExtensionsDecoratorsModule });
+    /** @nocollapse */ NgxsExtensionsDecoratorsModule.ɵinj = /** @pureOrBreakMyCode */ i0__namespace.ɵɵdefineInjector({});
     (function () {
         (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(NgxsExtensionsDecoratorsModule, [{
                 type: i0.NgModule

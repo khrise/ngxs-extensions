@@ -1,6 +1,5 @@
 import { ensureStoreMetadata, StateContext, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
 import { InjectorAccessorService } from '../internal/injector-accessor.service';
 import { uniqueId } from '../internal/utils';
 
@@ -10,7 +9,7 @@ import { uniqueId } from '../internal/utils';
  * @param stateClass state to get defaults from
  */
 export function ResetStateToDefault(stateClass: any) {
-  return function(target: any, key: string, descriptor: TypedPropertyDescriptor<any>) {
+  return function (target: any, key: string, descriptor: TypedPropertyDescriptor<any>) {
     // create meta data
     const id = uniqueId();
     const fn = `resetAction${id}`;
@@ -38,9 +37,7 @@ export function ResetStateToDefault(stateClass: any) {
     // wrap original function to call dispatch after method has finished
     const original: Function = descriptor.value;
     function dispatch() {
-      InjectorAccessorService.getInjector()
-        .get<Store>(Store)
-        .dispatch({ type });
+      InjectorAccessorService.getInjector().get<Store>(Store).dispatch({ type });
     }
     function wrapper(this: any, ...args: any[]) {
       const result = original.apply(this, args);

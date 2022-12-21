@@ -24,9 +24,9 @@
   "fesm2015": "fesm2015/ngxs-extensions-decorators.js",
   "typings": "ngxs-extensions-decorators.d.ts",
   "dependencies": {
-    "tslib": "^2.0.0"
+    "tslib": "^2.2.0"
   },
   "scripts": {
-    "prepublishOnly": "node --eval \"console.error('ERROR: Trying to publish a package that has been compiled by Ivy. This is not allowed.\\nPlease delete and rebuild the package, without compiling with Ivy, before attempting to publish.\\n')\" && exit 1"
+    "prepublishOnly": "node --eval \"console.error('ERROR: Trying to publish a package that has been compiled by Ivy in full compilation mode. This is not allowed.\\nPlease delete and rebuild the package with Ivy partial compilation mode, before attempting to publish.\\n')\" && exit 1"
   }
 }
