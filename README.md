@@ -33,6 +33,14 @@ import { NgxsExtensionsDecoratorsModule } from '@ngxs-extensions/decorators';
 export class AppModule {}
 ```
 
+Import public APIs from the package root only:
+
+```typescript
+import { NgxsExtensionsDecoratorsModule, ResetStateToDefault } from '@ngxs-extensions/decorators';
+```
+
+Do not use deep imports into package internals or build output folders.
+
 ## @ResetStateToDefault
 `@ResetStateToDefault` resets a state to default on method call. Can be used to reset a detail state on destroying of a detail view.
 
