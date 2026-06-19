@@ -97,6 +97,35 @@
         return "" + (prefix + id);
     }
 
+    var RESET_DEFAULTS_KEY = '__ngxsExtensionsResetDefaults__';
+    var RESET_CAPTURE_HOOK_KEY = '__ngxsExtensionsResetCaptureHook__';
+    function cloneDeep(value) {
+        if (Array.isArray(value)) {
+            return value.map(function (item) { return cloneDeep(item); });
+        }
+        if (value && typeof value === 'object') {
+            return Object.keys(value).reduce(function (acc, key) {
+                acc[key] = cloneDeep(value[key]);
+                return acc;
+            }, {});
+        }
+        return value;
+    }
+    function ensureDefaultsCaptureHook(stateClass) {
+        if (stateClass[RESET_CAPTURE_HOOK_KEY]) {
+            return;
+        }
+        var originalNgxsOnInit = stateClass.prototype.ngxsOnInit;
+        stateClass.prototype.ngxsOnInit = function (ctx) {
+            if (stateClass[RESET_DEFAULTS_KEY] === undefined) {
+                stateClass[RESET_DEFAULTS_KEY] = cloneDeep(ctx.getState());
+            }
+            if (typeof originalNgxsOnInit === 'function') {
+                return originalNgxsOnInit.call(this, ctx);
+            }
+        };
+        stateClass[RESET_CAPTURE_HOOK_KEY] = true;
+    }
     /**
      * Decorator to reset state to default on method call.
      *
@@ -104,33 +133,30 @@
      */
     function ResetStateToDefault(stateClass) {
         return function (target, key, descriptor) {
-            // create meta data
+            ensureDefaultsCaptureHook(stateClass);
+            // Build a unique action type for this decorator instance.
             var id = uniqueId();
             var fn = "resetAction" + id;
             var type = "[" + stateClass.name + "] ResetAction-" + id;
-            var meta = store.ensureStoreMetadata(stateClass);
-            if (meta.actions.hasOwnProperty(type)) {
-                throw new Error("Method decorated with such type `" + type + "` already exists");
-            }
-            // set action handler on state class
+            var ResetAction = /** @class */ (function () {
+                function ResetAction() {
+                }
+                return ResetAction;
+            }());
+            ResetAction.type = type;
+            // Register a reset action handler via the public Action decorator.
             stateClass.prototype[fn] = function (_a) {
                 var setState = _a.setState;
-                setState(meta.defaults);
+                var defaults = stateClass[RESET_DEFAULTS_KEY];
+                if (defaults !== undefined) {
+                    setState(cloneDeep(defaults));
+                }
             };
-            // set meta data
-            meta.actions[type] = [
-                {
-                    fn: fn,
-                    options: {},
-                    type: type,
-                },
-            ];
+            store.Action(ResetAction)(stateClass.prototype, fn, Object.getOwnPropertyDescriptor(stateClass.prototype, fn));
             // wrap original function to call dispatch after method has finished
             var original = descriptor.value;
             function dispatch() {
-                InjectorAccessorService.getInjector()
-                    .get(store.Store)
-                    .dispatch({ type: type });
+                InjectorAccessorService.getInjector().get(store.Store).dispatch(new ResetAction());
             }
             function wrapper() {
                 var args = [];
