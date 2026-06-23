@@ -4,13 +4,13 @@
   "version": "1.1.0",
   "license": "MIT",
   "sideEffects": true,
-  "main": "./fesm2015/ngxs-extensions-decorators.js",
-  "module": "./fesm2015/ngxs-extensions-decorators.js",
+  "main": "./fesm2022/ngxs-extensions-decorators.mjs",
+  "module": "./fesm2022/ngxs-extensions-decorators.mjs",
   "typings": "./index.d.ts",
   "exports": {
     ".": {
       "types": "./index.d.ts",
-      "default": "./fesm2015/ngxs-extensions-decorators.js"
+      "default": "./fesm2022/ngxs-extensions-decorators.mjs"
     }
   },
   "peerDependencies": {

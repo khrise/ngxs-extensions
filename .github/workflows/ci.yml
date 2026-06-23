@@ -28,6 +28,9 @@ jobs:
       - name: Build library
         run: npm run build
 
+      - name: Verify package exports
+        run: npm run verify:exports
+
       - name: Test library
         run: npm run test
 
@@ -51,6 +54,9 @@ jobs:
 
       - name: Build library
         run: npm run build
+
+      - name: Verify package exports
+        run: npm run verify:exports
 
       - name: Pack local package
         run: npm pack

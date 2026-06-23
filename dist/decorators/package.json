@@ -4,7 +4,7 @@
   "version": "1.1.0",
   "license": "MIT",
   "sideEffects": true,
-  "main": "./fesm2015/ngxs-extensions-decorators.js",
+  "main": "./fesm2022/ngxs-extensions-decorators.mjs",
   "module": "fesm2022/ngxs-extensions-decorators.mjs",
   "typings": "index.d.ts",
   "exports": {

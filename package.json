@@ -6,7 +6,8 @@
     "lint": "echo \"No lint task configured\"",
     "test": "ng test --coverage",
     "build": "ng build",
-    "ci": "npm run build && npm run test"
+    "verify:exports": "node -e \"const fs=require('fs'); const path=require('path'); const pkg=require('./package.json'); const e=pkg.exports?.['.']?.default; if(!e){throw new Error('Missing exports[\".\"].default');} const target=path.resolve(process.cwd(), e.replace(/^\\.\\//,'')); if(!fs.existsSync(target)){throw new Error('Missing export target: '+target);} console.log('Verified export target:', e);\"",
+    "ci": "npm run build && npm run verify:exports && npm run test"
   },
   "private": false,
   "repository": {
@@ -61,13 +62,13 @@
     "zone.js": "~0.15.0"
   },
   "sideEffects": true,
-  "main": "dist/decorators/bundles/ngxs-extensions-decorators.umd.js",
-  "module": "dist/decorators/fesm2015/ngxs-extensions-decorators.js",
+  "main": "dist/decorators/fesm2022/ngxs-extensions-decorators.mjs",
+  "module": "dist/decorators/fesm2022/ngxs-extensions-decorators.mjs",
   "types": "dist/decorators/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/decorators/index.d.ts",
-      "default": "./dist/decorators/fesm2015/ngxs-extensions-decorators.js"
+      "default": "./dist/decorators/fesm2022/ngxs-extensions-decorators.mjs"
     },
     "./package.json": "./package.json"
   },
