@@ -1,5 +1,5 @@
 /** Used to generate unique IDs. */
-const idCounter = {};
+const idCounter: Record<string, number> = {};
 
 /**
  * Generates a unique ID. If `prefix` is given, the ID is appended to it.

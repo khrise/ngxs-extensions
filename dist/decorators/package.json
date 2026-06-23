@@ -1,22 +1,31 @@
 {
   "$schema": "../node_modules/ng-packagr/package.schema.json",
   "name": "@ngxs-extensions/decorators",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "license": "MIT",
   "sideEffects": true,
-  "main": "bundles/ngxs-extensions-decorators.umd.js",
-  "module": "fesm2015/ngxs-extensions-decorators.js",
-  "typings": "ngxs-extensions-decorators.d.ts",
+  "main": "./fesm2015/ngxs-extensions-decorators.js",
+  "module": "fesm2022/ngxs-extensions-decorators.mjs",
+  "typings": "index.d.ts",
   "exports": {
     ".": {
       "types": "./index.d.ts",
-      "default": "./fesm2015/ngxs-extensions-decorators.js"
+      "default": "./fesm2022/ngxs-extensions-decorators.mjs"
+    },
+    "./package.json": {
+      "default": "./package.json"
     }
   },
   "peerDependencies": {
-    "@angular/core": ">=18.0.0 <19.0.0",
-    "@ngxs/store": ">=18.0.0 <19.0.0",
-    "rxjs": ">=7.8.0 <8.0.0"
+    "@angular/core": ">=19.0.0 <20.0.0",
+    "@ngxs/store": ">=19.0.0 <20.0.0",
+    "rxjs": ">=7.8.0 <8.0.0",
+    "typescript": ">=5.5.0 <5.9.0"
+  },
+  "peerDependenciesMeta": {
+    "typescript": {
+      "optional": true
+    }
   },
   "repository": {
     "type": "git",
@@ -26,13 +35,7 @@
     "url": "https://github.com/stefan-schubert/ngxs-extensions/issues"
   },
   "homepage": "https://github.com/stefan-schubert/ngxs-extensions#readme",
-  "es2015": "fesm2015/ngxs-extensions-decorators.js",
-  "esm2015": "esm2015/ngxs-extensions-decorators.js",
-  "fesm2015": "fesm2015/ngxs-extensions-decorators.js",
   "dependencies": {
-    "tslib": "^2.2.0"
-  },
-  "scripts": {
-    "prepublishOnly": "node --eval \"console.error('ERROR: Trying to publish a package that has been compiled by Ivy in full compilation mode. This is not allowed.\\nPlease delete and rebuild the package with Ivy partial compilation mode, before attempting to publish.\\n')\" && exit 1"
+    "tslib": "^2.3.0"
   }
 }

@@ -1,9 +1,10 @@
 import * as i0 from '@angular/core';
-import { Injectable, NgModule, Self } from '@angular/core';
+import { Injectable, Self, NgModule } from '@angular/core';
 import { Action, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 
 class InjectorAccessorService {
+    static injector = null;
     constructor(injector) {
         InjectorAccessorService.injector = injector;
     }
@@ -13,15 +14,15 @@ class InjectorAccessorService {
         }
         return this.injector;
     }
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.2.25", ngImport: i0, type: InjectorAccessorService, deps: [{ token: i0.Injector }], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "19.2.25", ngImport: i0, type: InjectorAccessorService });
 }
-InjectorAccessorService.injector = null;
-/** @nocollapse */ InjectorAccessorService.ɵfac = function InjectorAccessorService_Factory(t) { return new (t || InjectorAccessorService)(i0.ɵɵinject(i0.Injector)); };
-/** @nocollapse */ InjectorAccessorService.ɵprov = /** @pureOrBreakMyCode */ i0.ɵɵdefineInjectable({ token: InjectorAccessorService, factory: InjectorAccessorService.ɵfac });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(InjectorAccessorService, [{
-        type: Injectable
-    }], function () { return [{ type: i0.Injector }]; }, null); })();
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.2.25", ngImport: i0, type: InjectorAccessorService, decorators: [{
+            type: Injectable
+        }], ctorParameters: () => [{ type: i0.Injector }] });
 
 class NgxsExtensionsDecoratorsModule {
+    injectorAccessorService;
     constructor(injectorAccessorService) {
         this.injectorAccessorService = injectorAccessorService;
     }
@@ -31,15 +32,15 @@ class NgxsExtensionsDecoratorsModule {
             providers: [InjectorAccessorService],
         };
     }
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.2.25", ngImport: i0, type: NgxsExtensionsDecoratorsModule, deps: [{ token: InjectorAccessorService, self: true }], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "19.2.25", ngImport: i0, type: NgxsExtensionsDecoratorsModule });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "19.2.25", ngImport: i0, type: NgxsExtensionsDecoratorsModule });
 }
-/** @nocollapse */ NgxsExtensionsDecoratorsModule.ɵfac = function NgxsExtensionsDecoratorsModule_Factory(t) { return new (t || NgxsExtensionsDecoratorsModule)(i0.ɵɵinject(InjectorAccessorService, 2)); };
-/** @nocollapse */ NgxsExtensionsDecoratorsModule.ɵmod = /** @pureOrBreakMyCode */ i0.ɵɵdefineNgModule({ type: NgxsExtensionsDecoratorsModule });
-/** @nocollapse */ NgxsExtensionsDecoratorsModule.ɵinj = /** @pureOrBreakMyCode */ i0.ɵɵdefineInjector({});
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(NgxsExtensionsDecoratorsModule, [{
-        type: NgModule
-    }], function () { return [{ type: InjectorAccessorService, decorators: [{
-                type: Self
-            }] }]; }, null); })();
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.2.25", ngImport: i0, type: NgxsExtensionsDecoratorsModule, decorators: [{
+            type: NgModule
+        }], ctorParameters: () => [{ type: InjectorAccessorService, decorators: [{
+                    type: Self
+                }] }] });
 
 /** Used to generate unique IDs. */
 const idCounter = {};
@@ -109,8 +110,8 @@ function ResetStateToDefault(stateClass) {
         const fn = `resetAction${id}`;
         const type = `[${stateClass.name}] ResetAction-${id}`;
         class ResetAction {
+            static type = type;
         }
-        ResetAction.type = type;
         // Register a reset action handler via the public Action decorator.
         stateClass.prototype[fn] = ({ setState }) => {
             const defaults = stateClass[RESET_DEFAULTS_KEY];
@@ -150,4 +151,4 @@ function ResetStateToDefault(stateClass) {
  */
 
 export { NgxsExtensionsDecoratorsModule, ResetStateToDefault };
-//# sourceMappingURL=ngxs-extensions-decorators.js.map
+//# sourceMappingURL=ngxs-extensions-decorators.mjs.map

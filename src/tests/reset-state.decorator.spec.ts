@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { Action, NgxsModule, State, StateContext, Store } from '@ngxs/store';
 import { NgxsExtensionsDecoratorsModule, ResetStateToDefault } from '../';
@@ -16,6 +16,7 @@ class TestAction {
   name: 'testState',
   defaults: { property: 'default' },
 })
+@Injectable()
 class TestState {
   @Action(TestAction)
   doAction({ setState }: StateContext<StateModel>) {
@@ -23,7 +24,7 @@ class TestState {
   }
 }
 
-@Component({ template: '' })
+@Component({ template: '', standalone: false })
 class TestComponent implements OnInit {
   constructor(private store: Store) {}
   ngOnInit() {
@@ -48,6 +49,7 @@ describe('ResetStateToDefault', () => {
   let store: Store;
   let fixture: ComponentFixture<TestComponent>;
   let dispatchSpy: jest.SpyInstance;
+  const selectTestState = (state: any) => state.testState;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -60,46 +62,46 @@ describe('ResetStateToDefault', () => {
   });
 
   it('should reset state - sync', () => {
-    expect(store.selectSnapshot(TestState)).toEqual({ property: 'default' });
+    expect(store.selectSnapshot(selectTestState)).toEqual({ property: 'default' });
 
     fixture = TestBed.createComponent(TestComponent);
     fixture.detectChanges();
 
-    expect(store.selectSnapshot(TestState)).toEqual({ property: 'modified' });
+    expect(store.selectSnapshot(selectTestState)).toEqual({ property: 'modified' });
     expect(dispatchSpy).toHaveBeenCalled();
 
     fixture.componentInstance.resetSync();
 
-    expect(store.selectSnapshot(TestState)).toEqual({ property: 'default' });
+    expect(store.selectSnapshot(selectTestState)).toEqual({ property: 'default' });
   });
 
   it('should reset state - promise', fakeAsync(() => {
-    expect(store.selectSnapshot(TestState)).toEqual({ property: 'default' });
+    expect(store.selectSnapshot(selectTestState)).toEqual({ property: 'default' });
 
     fixture = TestBed.createComponent(TestComponent);
     fixture.detectChanges();
 
-    expect(store.selectSnapshot(TestState)).toEqual({ property: 'modified' });
+    expect(store.selectSnapshot(selectTestState)).toEqual({ property: 'modified' });
     expect(dispatchSpy).toHaveBeenCalled();
 
     fixture.componentInstance.resetWithPromise();
     tick();
 
-    expect(store.selectSnapshot(TestState)).toEqual({ property: 'default' });
+    expect(store.selectSnapshot(selectTestState)).toEqual({ property: 'default' });
   }));
 
   it('should reset state - sync', fakeAsync(() => {
-    expect(store.selectSnapshot(TestState)).toEqual({ property: 'default' });
+    expect(store.selectSnapshot(selectTestState)).toEqual({ property: 'default' });
 
     fixture = TestBed.createComponent(TestComponent);
     fixture.detectChanges();
 
-    expect(store.selectSnapshot(TestState)).toEqual({ property: 'modified' });
+    expect(store.selectSnapshot(selectTestState)).toEqual({ property: 'modified' });
     expect(dispatchSpy).toHaveBeenCalled();
 
     fixture.componentInstance.resetWithObservable();
     tick();
 
-    expect(store.selectSnapshot(TestState)).toEqual({ property: 'default' });
+    expect(store.selectSnapshot(selectTestState)).toEqual({ property: 'default' });
   }));
 });
