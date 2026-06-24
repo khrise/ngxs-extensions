@@ -1,26 +1,14 @@
 {
   "$schema": "../node_modules/ng-packagr/package.schema.json",
   "name": "@ngxs-extensions/decorators",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "license": "MIT",
   "sideEffects": true,
-  "main": "./fesm2022/ngxs-extensions-decorators.mjs",
-  "module": "fesm2022/ngxs-extensions-decorators.mjs",
-  "typings": "index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./index.d.ts",
-      "default": "./fesm2022/ngxs-extensions-decorators.mjs"
-    },
-    "./package.json": {
-      "default": "./package.json"
-    }
-  },
   "peerDependencies": {
-    "@angular/core": ">=19.0.0 <20.0.0",
-    "@ngxs/store": ">=19.0.0 <20.0.0",
+    "@angular/core": ">=20.0.0 <21.0.0",
+    "@ngxs/store": ">=20.0.0 <21.0.0",
     "rxjs": ">=7.8.0 <8.0.0",
-    "typescript": ">=5.5.0 <5.9.0"
+    "typescript": ">=5.8.0 <6.0.0"
   },
   "peerDependenciesMeta": {
     "typescript": {
@@ -35,6 +23,17 @@
     "url": "https://github.com/stefan-schubert/ngxs-extensions/issues"
   },
   "homepage": "https://github.com/stefan-schubert/ngxs-extensions#readme",
+  "module": "fesm2022/ngxs-extensions-decorators.mjs",
+  "typings": "index.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./fesm2022/ngxs-extensions-decorators.mjs"
+    }
+  },
   "dependencies": {
     "tslib": "^2.3.0"
   }

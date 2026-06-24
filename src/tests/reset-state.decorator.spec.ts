@@ -57,7 +57,7 @@ describe('ResetStateToDefault', () => {
       declarations: [TestComponent],
     });
 
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
     dispatchSpy = jest.spyOn(store, 'dispatch');
   });
 
